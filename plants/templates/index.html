@@ -1,0 +1,23 @@
+{% for plant in plants.data %}
+<div>
+    <p>
+        <a href="plants/{{ plant.slug }}">
+            {{ plant.common_name }} -
+            {{ plant.slug }} -
+            {{ plant.id }}
+        </a>
+    </p>
+    <!-- TODO Refactor CSS -->
+    {% if plant.image_url %}
+        <img src="{{ plant.image_url }}" alt="{{ plant.data.common_name }}" style="width:250px;height:250px;object-fit:cover;"/>
+    {% endif %}
+    <p>{{ plant }}</p>
+</div>
+{% endfor %}
+<div class="pagination">
+    <a href="{{ plants.links.first }}">First</a>
+    <a href="{{ plants.links.prev }}">Previous</a>
+    <a href="{{ plants.links.self }}">Current</a>
+    <a href="{{ plants.links.next }}">Next</a>
+    <a href="{{ plants.links.last }}">Last</a>
+</div>
