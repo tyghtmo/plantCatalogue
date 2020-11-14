@@ -10,9 +10,7 @@
     <div class="card">
         <div class="card-body d-flex">
             {% if plant.image_url %}
-            <!-- TODO Refactor CSS -->
-            <img src="{{ plant.image_url }}" alt="{{ plant.data.common_name }}"
-                 style="width:250px;height:250px;object-fit:cover;"/>
+                <img class="plantImage" src="{{ plant.image_url }}" alt="{{ plant.data.common_name }}"/>
             {% endif %}
             <div class="container">
                 <h5 class="card-title">
