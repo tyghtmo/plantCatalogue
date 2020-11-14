@@ -1,23 +1,49 @@
+{% extends "main.html" %}
+
+{% block title %}
+{{ plant.data.common_name }}
+{% endblock %}
+
+{% block content %}
 {% for plant in plants.data %}
-<div>
-    <p>
-        <a href="plants/{{ plant.slug }}">
-            {{ plant.common_name }} -
-            {{ plant.slug }} -
-            {{ plant.id }}
-        </a>
-    </p>
-    <!-- TODO Refactor CSS -->
-    {% if plant.image_url %}
-        <img src="{{ plant.image_url }}" alt="{{ plant.data.common_name }}" style="width:250px;height:250px;object-fit:cover;"/>
-    {% endif %}
-    <p>{{ plant }}</p>
+<div class="container">
+    <div class="card">
+        <div class="card-body d-flex">
+            {% if plant.image_url %}
+            <!-- TODO Refactor CSS -->
+            <img src="{{ plant.image_url }}" alt="{{ plant.data.common_name }}"
+                 style="width:250px;height:250px;object-fit:cover;"/>
+            {% endif %}
+            <div class="container">
+                <h5 class="card-title">
+                    {% if plant.common_name %}
+                        {{ plant.common_name }}
+                    {% else %}
+                        {{ plant.scientific_name }}
+                    {% endif %}
+                </h5>
+                <p class="card-text">Scientific Name: {{ plant.scientific_name }}</p>
+                <p class="card-text">Family: {{ plant.family }}</p>
+                <p class="card-text">Family Common Name: {{ plant.family_common_name }}</p>
+                <p class="card-text">Genus: {{ plant.genus }}</p>
+                <a href="plants/{{ plant.slug }}" class="btn btn-primary">View</a>
+            </div>
+        </div>
+    </div>
+    <br>
+<!--    <p>{{ plant }}</p>-->
 </div>
 {% endfor %}
-<div class="pagination">
-    <a href="{{ plants.links.first }}">First</a>
-    <a href="{{ plants.links.prev }}">Previous</a>
-    <a href="{{ plants.links.self }}">Current</a>
-    <a href="{{ plants.links.next }}">Next</a>
-    <a href="{{ plants.links.last }}">Last</a>
+
+<div class="container d-flex justify-content-center">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="{{ plants.links.first }}">First</a></li>
+            <li class="page-item"><a class="page-link" href="{{ plants.links.prev }}">Previous</a></li>
+            <li class="page-item active"><a class="page-link" href="{{ plants.links.self }}">Current</a></li>
+            <li class="page-item"><a class="page-link" href="{{ plants.links.next }}">Next</a></li>
+            <li class="page-item"><a class="page-link" href="{{ plants.links.last }}">Last</a></li>
+        </ul>
+    </nav>
 </div>
+{% endblock %}

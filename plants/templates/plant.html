@@ -1,4 +1,9 @@
- <p>
+{% extends "main.html" %}
+
+{% block title %}{{ plant.data.common_name }}{% endblock %}
+
+{% block content %}
+    <p>
         <a href="plants/{{ plant.slug }}">
             {{ plant.data.common_name }} -
             {{ plant.data.slug }} -
@@ -8,3 +13,4 @@
     <!-- TODO Refactor CSS -->
     <img src="{{ plant.data.image_url }}" alt="{{ plant.common_name }}" style="width:250px;height:250px;object-fit:cover;"/>
     <p>{{ parsed|safe|linebreaks }}</p>
+{% endblock %}
