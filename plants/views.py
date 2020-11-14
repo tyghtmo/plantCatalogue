@@ -13,7 +13,7 @@ def index(requests):
         page = requests.GET.get('page')
 
     response = plants.get_all(page)
-    return render(requests, 'index.html', {
+    return render(requests, 'plantList.html', {
         'plants': response
     })
 

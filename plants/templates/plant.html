@@ -1,6 +1,12 @@
 {% extends "main.html" %}
 
-{% block title %}{{ plant.data.common_name }}{% endblock %}
+{% block title %}
+    {% if plant.data.common_name%}
+        {{ plant.data.common_name|title }}
+    {% else %}
+        {{ plant.data.scientific_name|title }}
+    {% endif %}
+{% endblock %}
 
 {% block content %}
     <p>
@@ -10,7 +16,7 @@
             {{ plant.data.id }} -
         </a>
     </p>
-    <!-- TODO Refactor CSS -->
-    <img src="{{ plant.data.image_url }}" alt="{{ plant.common_name }}" style="width:250px;height:250px;object-fit:cover;"/>
+    
+    <img src="{{ plant.data.image_url }}" alt="{{ plant.common_name }}"/>
     <p>{{ parsed|safe|linebreaks }}</p>
 {% endblock %}
