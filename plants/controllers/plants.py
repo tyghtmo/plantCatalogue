@@ -6,18 +6,26 @@ import os
 token = os.environ['TREFLETOKEN']
 
 
+def cleanLinks(links):
+    # changes link in api to ?page=x
+
+    for link in links:
+        links[link] = '?' + str(links[link]).split('?')[1]  
+    return links
+
+
 def get_all(page, parent):
     # <page> url page object value
     # <return> Paginated JSON containing 30 plants
 
     url = 'https://trefle.io/api/v1/' + parent + '?token=' + token + '&page=' + page
     response = json.loads(requests.get(url).text)
-    for link in response["links"]:
-        response["links"][link] = '?' + str(response["links"][link]).split('?')[1]  # changes link from api to ?page=x
+    response['links'] = cleanLinks(response['links'])
+
     return response
 
 
-def get_single(slug):
+def get_single(slug, parent):
     # <slug> unique plant identifier
     # <return> JSON for a single plant
 
@@ -29,4 +37,6 @@ def search(query, page):
 
     url = 'https://trefle.io/api/v1/plants/search?q=' + query + '&token=' + token + '&page=' + page
     response = json.loads(requests.get(url).text)
+    response['links'] = cleanLinks(response['links'])
+
     return response

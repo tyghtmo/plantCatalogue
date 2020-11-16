@@ -52,7 +52,7 @@ def query(requests):
     if requests.GET.get('page'):
         page = requests.GET.get('page')
 
-    query = requests.GET.get('query')
+    query = requests.GET.get('q')
 
     response = plants.search(query, page)
     return render(requests, 'plantList.html', {

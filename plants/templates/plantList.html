@@ -5,17 +5,19 @@
 {% endblock %}
 
 {% block content %}
-{% comment %} {{ plants }} {% endcomment %}
+<!--FIXME remove after development-->
+<!--{{ plants }}-->
+<!--{{ request.get_host }}-->
 <div id="cardList">
 
     {% for plant in plants.data %}
     <div class="container cardContainer">
-        <a href="plants/{{ plant.slug }}">
+        <a href="/plants/{{ plant.slug }}">
             <div class="card plantCard">
                 <div class="card-body row">
                     <div class="col">
                         {% if plant.image_url %}
-                        <img class="plantImage" src="{{ plant.image_url }}" alt="{{ plant.data.common_name }}" />
+                        <img class="plantImage" src="{{ plant.image_url }}" alt="{{ plant.scientific_name }}" />
                         {% endif %}
                     </div>
                     <div class="col-8">
@@ -45,11 +47,23 @@
 <div class="container d-flex justify-content-center">
     <nav aria-label="Page navigation example">
         <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="{{ plants.links.first }}">First</a></li>
-            <li class="page-item"><a class="page-link" href="{{ plants.links.prev }}">Previous</a></li>
-            <li class="page-item active"><a class="page-link" href="{{ plants.links.self }}">Current</a></li>
-            <li class="page-item"><a class="page-link" href="{{ plants.links.next }}">Next</a></li>
-            <li class="page-item"><a class="page-link" href="{{ plants.links.last }}">Last</a></li>
+            <li class="page-item"><a class="page-link" href="{{ request.path }}{{ plants.links.first }}">First</a></li>
+
+            {% if plants.links.prev %}
+                <li class="page-item"><a class="page-link" href="{{ request.path }}{{ plants.links.prev }}">Prev</a></li>
+            {% endif %}
+
+            <li class="page-item active"><a class="page-link" href="{{ request.path }}{{ plants.links.self }}">
+                {% if request.GET.page %} {{request.GET.page}}
+                {% else %} 1
+                {% endif %}
+            </a></li>
+
+            {% if plants.links.next %}
+                <li class="page-item"><a class="page-link" href="{{ request.path }}{{ plants.links.next }}">Next</a></li>
+            {% endif %}
+
+            <li class="page-item"><a class="page-link" href="{{ request.path }}{{ plants.links.last }}">Last</a></li>
         </ul>
     </nav>
 </div>
