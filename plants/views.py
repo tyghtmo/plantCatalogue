@@ -12,7 +12,7 @@ def index(requests):
     if requests.GET.get('page'):
         page = requests.GET.get('page')
 
-    response = plants.get_all(page)
+    response = plants.get_all(page, 'plants')
     return render(requests, 'plantList.html', {
         'plants': response
     })
@@ -23,7 +23,7 @@ def plant(requests, slug):
     # <slug> unique plant identifier
     # <return> plant.html rendered with raw and pretty response JSON
 
-    response = plants.get_single(slug)
+    response = plants.get_single(slug, 'plants')
 
     # JSON formatting for pretty printing
     pretty = json.dumps(response["data"], indent=4).replace('  ', '&emsp;')
