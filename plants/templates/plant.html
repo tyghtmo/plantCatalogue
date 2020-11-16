@@ -12,10 +12,24 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-6">
+
+                {% if plant.data.common_name %}
+                    <h2>{{ plant.data.common_name|title }}</h2>
+                    <h4>{{ plant.data.scientific_name|title }}</h4>
+                {% else %}
+                    <h2>{{ plant.data.scientific_name }}</h2>
+                {% endif %}
+
+                <p>Genus: {{ plant.data.main_species.genus }}
+                <p>Family: {{ plant.data.main_species.family }}
+                 -  {%if plant.data.main_species.family_common_name %}
+                        {{plant.data.main_species.family_common_name}}
+                    {% endif %}
+                </p>
                 <p>{{ parsed|safe|linebreaks }}</p>
             </div>
             <div class="col-6">
-                <img class="mx-auto d-block" src="{{ plant.data.image_url }}" alt="{{ plant.data.scientific_name }}"/>
+                <img class="mx-auto d-block plantImage" src="{{ plant.data.image_url }}" alt="{{ plant.data.scientific_name }}"/>
             </div>
         </div>
     </div>

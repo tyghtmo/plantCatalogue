@@ -31,11 +31,15 @@ $plantImgHeight: $cardHeight - 50px;
 
 ////////////////////////////////////////////////////////////////////////////////
 // CSS
-.plantImage {
+.plantListImage {
     width: 100%;
     height: $plantImgHeight;
     object-fit: cover;
     border-radius: 3%;
+}
+
+.plantImage{
+  width: 100%;
 }
 
 .plantCard {
@@ -76,22 +80,52 @@ $plantImgHeight: $cardHeight - 50px;
         color: unset;  
     }
 
+    
+
+}
+
+.plantList{
+  .cardContainer{
     @include for-size(phone-only){
-        flex: 100%;
-    }
+      flex: 100%;
+  }
 
-    @include for-size(tablet-landscape-up){
-        flex: 50%;
-     }
+  @include for-size(tablet-landscape-up){
+      flex: 50%;
+   }
 
-    @include for-size(desktop-up){
-        flex: 33%;
-    }
+  @include for-size(desktop-up){
+      flex: 33%;
+  }
 
-    @include for-size(big-desktop-up){
-        flex: 25%;
-    }
+  @include for-size(big-desktop-up){
+      flex: 25%;
+  }
+  }
+}
 
+.genusList{
+  .cardContainer{
+    @include for-size(phone-only){
+      flex: 100%;
+  }
+
+  @include for-size(tablet-portrait-up){
+    flex: 50%;
+  }
+
+  @include for-size(tablet-landscape-up){
+      flex: 33%;
+   }
+
+  @include for-size(desktop-up){
+      flex: 25%;
+  }
+
+  @include for-size(big-desktop-up){
+      flex: 20%;
+  }
+  }
 }
 
 #content {

@@ -5,7 +5,7 @@ from plants.controllers import plants
 
 def plantList(requests):
     # <requests> Django state
-    # <return> index.html rendered with the response JSON
+    # <return> plantList.html rendered with the response JSON
 
     # Defaults to empty url page object
     page = ''
@@ -35,7 +35,7 @@ def plant(requests, slug):
 
 def genusList(requests):
     # <requests> Django state
-    # <return> index.html rendered with the response JSON
+    # <return> genusList.html rendered with the response JSON
 
     # Defaults to empty url page object
     page = ''
@@ -48,13 +48,17 @@ def genusList(requests):
     })
 
 def query(requests):
+    # <requests> Django state
+    # <return> plantList.html rendered with the response JSON
+
+    # Defaults to empty url page object
     page = '1'
     if requests.GET.get('page'):
         page = requests.GET.get('page')
 
     query = requests.GET.get('q')
 
-    response = plants.search(query, page)
+    response = plants.search(query, page, 'plants')
     return render(requests, 'plantList.html', {
         'plants': response
     })
