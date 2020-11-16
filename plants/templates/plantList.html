@@ -1,43 +1,46 @@
 {% extends "main.html" %}
 
 {% block title %}
-    {% if plant.data.common_name%}
-        {{ plant.data.common_name|title }}
-    {% else %}
-        {{ plant.data.scientific_name|title }}
-    {% endif %}
+    Plant List
 {% endblock %}
 
 {% block content %}
-{% for plant in plants.data %}
-<div class="container">
-    <div class="card">
-        <div class="card-body d-flex">
-            <div class="container d-flex justify-content-center">
-                {% if plant.image_url %}
-                    <img class="plantImage" src="{{ plant.image_url }}" alt="{{ plant.data.common_name }}"/>
-                {% endif %}
+
+<div id="cardList">
+
+    {% for plant in plants.data %}
+    <div class="container cardContainer">
+        <a href="plants/{{ plant.slug }}">
+            <div class="card plantCard" onClick=>
+                <div class="card-body row">
+                    <div class="col">
+                        {% if plant.image_url %}
+                        <img class="plantImage" src="{{ plant.image_url }}" alt="{{ plant.data.common_name }}" />
+                        {% endif %}
+                    </div>
+                    <div class="col-8">
+                        <h5 class="card-title">
+                            {% if plant.common_name %}
+                            {{ plant.common_name|title }}
+                            {% else %}
+                            {{ plant.scientific_name }}
+                            {% endif %}
+                        </h5>
+                        <p class="card-text">Scientific Name: {{ plant.scientific_name }}</p>
+                        <p class="card-text">Family: {{ plant.family }}</p>
+                        {% if plant.family_common_name %}
+                            <p class="card-text">Family Common Name: {{ plant.family_common_name }}</p>
+                        {% endif %}
+                        <p class="card-text">Genus: {{ plant.genus }}</p>
+                    </div>
+                </div>
             </div>
-            <div class="container">
-                <h5 class="card-title">
-                    {% if plant.common_name %}
-                        {{ plant.common_name|title }}
-                    {% else %}
-                        {{ plant.scientific_name }}
-                    {% endif %}
-                </h5>
-                <p class="card-text">Scientific Name: {{ plant.scientific_name }}</p>
-                <p class="card-text">Family: {{ plant.family }}</p>
-                <p class="card-text">Family Common Name: {{ plant.family_common_name }}</p>
-                <p class="card-text">Genus: {{ plant.genus }}</p>
-                <a href="plants/{{ plant.slug }}" class="btn btn-primary">View</a>
-            </div>
-        </div>
+        </a>
+        <!--    <p>{{ plant }}</p>-->
     </div>
-    <br>
-<!--    <p>{{ plant }}</p>-->
+    {% endfor %}
+
 </div>
-{% endfor %}
 
 <div class="container d-flex justify-content-center">
     <nav aria-label="Page navigation example">

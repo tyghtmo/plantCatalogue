@@ -1,6 +1,91 @@
+////////////////////////////////////////////////////////////////////////////////
+// Variables
+$cardSpacing: 2em;
+$cardHeight: 250px;
+$plantImgHeight: $cardHeight - 50px;
+
+
+////////////////////////////////////////////////////////////////////////////////
+// MixIns
+
+//Device brerakpoints
+@mixin for-size($range) {
+    $phone-upper-boundary: 600px;
+    $tablet-portrait-upper-boundary: 900px;
+    $tablet-landscape-upper-boundary: 1600px;
+    $desktop-upper-boundary: 2000px;
+  
+    @if $range == phone-only {
+      @media (max-width: #{$phone-upper-boundary - 1}) { @content; }
+    } @else if $range == tablet-portrait-up {
+      @media (min-width: $phone-upper-boundary) { @content; }
+    } @else if $range == tablet-landscape-up {
+      @media (min-width: $tablet-portrait-upper-boundary) { @content; }
+    } @else if $range == desktop-up {
+      @media (min-width: $tablet-landscape-upper-boundary) { @content; }
+    } @else if $range == big-desktop-up {
+      @media (min-width: $desktop-upper-boundary) { @content; }
+    }
+  }
+
+
+////////////////////////////////////////////////////////////////////////////////
+// CSS
 .plantImage {
-    width: 80%;
-    height: 250px;
+    width: 100%;
+    height: $plantImgHeight;
     object-fit: cover;
     border-radius: 3%;
 }
+
+.plantCard {
+    margin-bottom: $cardSpacing;
+    height: 250px;
+    transition: all .2s ease-in-out;
+}
+
+.plantCard:hover{
+    transform: scale(1.1);
+    z-index: 1000;
+}
+
+#cardList{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cardContainer{
+    a {
+        text-decoration: none;
+        color: unset;
+    }
+
+    a:hover{
+        text-decoration: none;
+        color: unset;  
+    }
+
+    @include for-size(phone-only){
+        flex: 100%;
+    }
+
+    @include for-size(tablet-landscape-up){
+        flex: 50%;
+     }
+
+    @include for-size(desktop-up){
+        flex: 33%;
+    }
+
+    @include for-size(big-desktop-up){
+        flex: 25%;
+    }
+
+}
+
+#content {
+    width: 90%;
+    margin: auto;
+}
+
+
