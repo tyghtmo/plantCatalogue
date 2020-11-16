@@ -5,13 +5,13 @@
 {% endblock %}
 
 {% block content %}
-
+{% comment %} {{ plants }} {% endcomment %}
 <div id="cardList">
 
     {% for plant in plants.data %}
     <div class="container cardContainer">
         <a href="plants/{{ plant.slug }}">
-            <div class="card plantCard" onClick=>
+            <div class="card plantCard">
                 <div class="card-body row">
                     <div class="col">
                         {% if plant.image_url %}
@@ -36,7 +36,7 @@
                 </div>
             </div>
         </a>
-        <!--    <p>{{ plant }}</p>-->
+        {% comment %} <p>{{ plant }}</p> {% endcomment %}
     </div>
     {% endfor %}
 

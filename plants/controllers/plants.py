@@ -24,3 +24,9 @@ def get_single(slug):
     url = 'http://trefle.io/api/v1/' + parent +'/' + slug + "?token=" + token
     response = json.loads(requests.get(url).text)
     return response
+
+def search(query, page):
+
+    url = 'https://trefle.io/api/v1/plants/search?q=' + query + '&token=' + token + '&page=' + page
+    response = json.loads(requests.get(url).text)
+    return response

@@ -19,6 +19,8 @@ from plants import views as plants_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', plants_view.index),
-    path('plants/<str:slug>', plants_view.plant, name='plant')
+    path('search/', plants_view.query, name='search'),
+    path('', plants_view.plantList),
+    path('plants/<str:slug>', plants_view.plant, name='plant'),
+    path('genus', plants_view.genusList)
 ]

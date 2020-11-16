@@ -1,0 +1,41 @@
+{% extends "main.html" %}
+
+{% block title %}
+    Genus List
+{% endblock %}
+
+{% block content %}
+
+<div id="cardList">
+
+    {% for genus in genus.data %}
+    <div class="container cardContainer">
+        <a href="genus/{{ genus.slug }}">
+            <div class="card genusCard">
+                <div class="card-body ">
+                    <h5 class="card-title">{{ genus.name|title }}</h5>
+                    <p class="card-text">Family: {{ genus.family.name }}</p>
+                    {% if genus.family.common_name %}
+                        <p class="card-text">Family Common Name: {{ genus.family.common_name }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </a>
+        {% comment %} <p>{{ genus }}</p> {% endcomment %}
+    </div>
+    {% endfor %}
+
+</div>
+
+<div class="container d-flex justify-content-center">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="{{ genuss.links.first }}">First</a></li>
+            <li class="page-item"><a class="page-link" href="{{ genuss.links.prev }}">Previous</a></li>
+            <li class="page-item active"><a class="page-link" href="{{ genuss.links.self }}">Current</a></li>
+            <li class="page-item"><a class="page-link" href="{{ genuss.links.next }}">Next</a></li>
+            <li class="page-item"><a class="page-link" href="{{ genuss.links.last }}">Last</a></li>
+        </ul>
+    </nav>
+</div>
+{% endblock %}
