@@ -13,7 +13,7 @@
         <a href="class/{{ class.slug }}">
             <div class="card classCard">
                 <div class="card-body ">
-                    <h5 class="card-title">{{ class.name|title }}</h5>
+                    <h5 class="card-title">{{ class.name|titleCaps|safe}}</h5>
                     <p class="card-text">Phylum: {% firstof class.division.name "Unknown" %}</p>
                     <p class="card-text">Subkingdom: {% firstof class.division.subkingdom.name "Unknown" %}</p>
                 </div>

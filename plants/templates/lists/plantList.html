@@ -1,13 +1,19 @@
 {% extends "main.html" %}
 
 {% block title %}
-    Plant List
+    {% if request.path == '/search/'%}
+        Search Results
+    {% else %}
+        Plant List
+    {% endif %}
 {% endblock %}
 
 {% block content %}
+
+{% load plants_tags %}
 <!--FIXME remove after development-->
 <!--{{ plants }}-->
-<!--{{ request.get_host }}-->
+<!--{{ request.path }}-->
 <div id="cardList" class="plantList">
 
     {% for plant in plants.data %}
@@ -23,7 +29,7 @@
                     <div class="col-8">
                         <h5 class="card-title">
                             {% firstof  plant.common_name plant.scientific_name as value%}
-                            {{ value|title }}
+                            {{ value|titleCaps|safe }}
                         </h5>
                         <p class="card-text">Scientific Name: {{ plant.scientific_name }}</p>
                         <p class="card-text">Family: {{ plant.family }}</p>

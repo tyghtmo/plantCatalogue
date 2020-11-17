@@ -2,9 +2,9 @@
 
 {% block title %}
     {% if plant.data.common_name%}
-        {{ plant.data.common_name|title }}
+        {{ plant.data.common_name|titleCaps|safe}}
     {% else %}
-        {{ plant.data.scientific_name|title }}
+        {{ plant.data.scientific_name|titleCaps|safe}}
     {% endif %}
 {% endblock %}
 
@@ -14,8 +14,8 @@
             <div class="col-6">
 
                 {% if plant.data.common_name %}
-                    <h2>{{ plant.data.common_name|title }}</h2>
-                    <h4>{{ plant.data.scientific_name|title }}</h4>
+                    <h2>{{ plant.data.common_name|titleCaps|safe}}</h2>
+                    <h4>{{ plant.data.scientific_name|titleCaps|safe}}</h4>
                 {% else %}
                     <h2>{{ plant.data.scientific_name }}</h2>
                 {% endif %}

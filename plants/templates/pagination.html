@@ -11,8 +11,10 @@
             {% endif %}
 
             <li class="page-item active"><a class="page-link" href="{{ request.path }}{{ parent.links.self }}">
-                {% if request.GET.page %} {{request.GET.page}}
-                {% else %} 1
+                {% if request.GET.page %} 
+                    {{request.GET.page}}
+                {% else %} 
+                    1
                 {% endif %}
             </a></li>
 
