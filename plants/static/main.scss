@@ -53,13 +53,13 @@ $plantImgHeight: $cardHeight - 50px;
     z-index: 1000;
 }
 
-.genusCard{
+.genusCard, .familyCard, .orderCard, .classCard{
   margin-bottom: $cardSpacing;
   height: 150px;
   transition: all .2s ease-in-out;
 }
 
-.genusCard:hover{
+.genusCard:hover, .familyCard:hover, .orderCard:hover, .classCard:hover{
   transform: scale(1.1);
   z-index: 1000;
 }
@@ -104,7 +104,7 @@ $plantImgHeight: $cardHeight - 50px;
   }
 }
 
-.genusList{
+.genusList, .familyList, .orderList, .classList{
   .cardContainer{
     @include for-size(phone-only){
       flex: 100%;

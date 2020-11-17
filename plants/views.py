@@ -33,6 +33,7 @@ def plant(requests, slug):
         'parsed': pretty,
     })
 
+
 def genusList(requests):
     # <requests> Django state
     # <return> genusList.html rendered with the response JSON
@@ -46,6 +47,52 @@ def genusList(requests):
     return render(requests, 'genusList.html', {
         'genus': response
     })
+
+
+def familyList(requests):
+    # <requests> Django state
+    # <return> familyList.html rendered with the response JSON
+
+    # Defaults to empty url page object
+    page = ''
+    if requests.GET.get('page'):
+        page = requests.GET.get('page')
+
+    response = plants.get_all(page, 'families')
+    return render(requests, 'familyList.html', {
+        'family': response
+    })
+
+
+def orderList(requests):
+    # <requests> Django state
+    # <return> orderList.html rendered with the response JSON
+
+    # Defaults to empty url page object
+    page = ''
+    if requests.GET.get('page'):
+        page = requests.GET.get('page')
+
+    response = plants.get_all(page, 'division_orders')
+    return render(requests, 'orderList.html', {
+        'order': response
+    })
+
+
+def classList(requests):
+    # <requests> Django state
+    # <return> classList.html rendered with the response JSON
+
+    # Defaults to empty url page object
+    page = ''
+    if requests.GET.get('page'):
+        page = requests.GET.get('page')
+
+    response = plants.get_all(page, 'division_classes')
+    return render(requests, 'classList.html', {
+        'class': response
+    })
+
 
 def query(requests):
     # <requests> Django state

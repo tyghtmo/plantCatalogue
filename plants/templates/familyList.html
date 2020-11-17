@@ -1,0 +1,30 @@
+{% extends "main.html" %}
+
+{% block title %}
+    Family List
+{% endblock %}
+
+{% block content %}
+
+<div id="cardList" class="familyList">
+
+    {% for family in family.data %}
+    <div class="container cardContainer">
+        <a href="family/{{ family.slug }}">
+            <div class="card familyCard">
+                <div class="card-body ">
+                    <h5 class="card-title">{{ family.name|title }}</h5>
+                    <p class="card-text">Common Name: {% firstof  family.common_name "None" %}</p>
+                    <p class="card-text">Order: {% firstof family.division_order.name "Unknown" %}</p>
+                </div>
+            </div>
+        </a>
+        {% comment %} <p>{{ family }}</p> {% endcomment %}
+    </div>
+    {% endfor %}
+
+</div>
+
+{% include 'pagination.html' with parent=family%}
+
+{% endblock %}

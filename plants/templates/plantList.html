@@ -22,11 +22,8 @@
                     </div>
                     <div class="col-8">
                         <h5 class="card-title">
-                            {% if plant.common_name %}
-                            {{ plant.common_name|title }}
-                            {% else %}
-                            {{ plant.scientific_name }}
-                            {% endif %}
+                            {% firstof  plant.common_name plant.scientific_name as value%}
+                            {{ value|title }}
                         </h5>
                         <p class="card-text">Scientific Name: {{ plant.scientific_name }}</p>
                         <p class="card-text">Family: {{ plant.family }}</p>
@@ -44,27 +41,6 @@
 
 </div>
 
-<div class="container d-flex justify-content-center">
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="{{ request.path }}{{ plants.links.first }}">First</a></li>
+{% include 'pagination.html' with parent=plants %}
 
-            {% if plants.links.prev %}
-                <li class="page-item"><a class="page-link" href="{{ request.path }}{{ plants.links.prev }}">Prev</a></li>
-            {% endif %}
-
-            <li class="page-item active"><a class="page-link" href="{{ request.path }}{{ plants.links.self }}">
-                {% if request.GET.page %} {{request.GET.page}}
-                {% else %} 1
-                {% endif %}
-            </a></li>
-
-            {% if plants.links.next %}
-                <li class="page-item"><a class="page-link" href="{{ request.path }}{{ plants.links.next }}">Next</a></li>
-            {% endif %}
-
-            <li class="page-item"><a class="page-link" href="{{ request.path }}{{ plants.links.last }}">Last</a></li>
-        </ul>
-    </nav>
-</div>
 {% endblock %}

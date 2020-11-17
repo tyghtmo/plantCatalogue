@@ -1,0 +1,30 @@
+{% extends "main.html" %}
+
+{% block title %}
+    Order List
+{% endblock %}
+
+{% block content %}
+
+<div id="cardList" class="orderList">
+
+    {% for order in order.data %}
+    <div class="container cardContainer">
+        <a href="order/{{ order.slug }}">
+            <div class="card orderCard">
+                <div class="card-body ">
+                    <h5 class="card-title">{{ order.name|title }}</h5>
+                    <p class="card-text">Class: {% firstof order.division_class.name "Unknown" %}</p>
+                    <p class="card-text">Phylum: {% firstof order.division_class.division.name "Unknown" %}</p>
+                </div>
+            </div>
+        </a>
+        {% comment %} <p>{{ order }}</p> {% endcomment %}
+    </div>
+    {% endfor %}
+
+</div>
+
+{% include 'pagination.html' with parent=order%}
+
+{% endblock %}

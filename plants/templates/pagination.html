@@ -1,0 +1,28 @@
+<div class="container d-flex justify-content-center">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+
+            {% if request.GET.page != '1' and request.GET.page %}
+                <li class="page-item"><a class="page-link" href="{{ request.path }}{{ parent.links.first }}">First</a></li>
+            {% endif %}
+
+            {% if parent.links.prev %}
+                <li class="page-item"><a class="page-link" href="{{ request.path }}{{ parent.links.prev }}">Prev</a></li>
+            {% endif %}
+
+            <li class="page-item active"><a class="page-link" href="{{ request.path }}{{ parent.links.self }}">
+                {% if request.GET.page %} {{request.GET.page}}
+                {% else %} 1
+                {% endif %}
+            </a></li>
+
+            {% if parent.links.next %}
+                <li class="page-item"><a class="page-link" href="{{ request.path }}{{ parent.links.next }}">Next</a></li>
+            {% endif %}
+
+            {% if parent.links.self != parent.links.last%}
+                <li class="page-item"><a class="page-link" href="{{ request.path }}{{ parent.links.last }}">Last</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>

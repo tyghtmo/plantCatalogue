@@ -1,0 +1,30 @@
+{% extends "main.html" %}
+
+{% block title %}
+    class List
+{% endblock %}
+
+{% block content %}
+
+<div id="cardList" class="classList">
+
+    {% for class in class.data %}
+    <div class="container cardContainer">
+        <a href="class/{{ class.slug }}">
+            <div class="card classCard">
+                <div class="card-body ">
+                    <h5 class="card-title">{{ class.name|title }}</h5>
+                    <p class="card-text">Phylum: {% firstof class.division.name "Unknown" %}</p>
+                    <p class="card-text">Subkingdom: {% firstof class.division.subkingdom.name "Unknown" %}</p>
+                </div>
+            </div>
+        </a>
+        {% comment %} <p>{{ class }}</p> {% endcomment %}
+    </div>
+    {% endfor %}
+
+</div>
+
+{% include 'pagination.html' with parent=class%}
+
+{% endblock %}
