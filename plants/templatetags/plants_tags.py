@@ -5,7 +5,10 @@ register = template.Library()
 
 @register.filter
 def titleCaps(value):
-    return capwords(value)
+    if value:
+        return capwords(value)
+    
+    return value
 
 
 @register.filter

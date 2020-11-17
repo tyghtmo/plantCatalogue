@@ -1,0 +1,19 @@
+{% extends "main.html" %}
+{% load plants_tags %}
+
+{% block title %}
+    {% firstof genus.data.common_name genus.data.name as value %}
+    {{ value|titleCaps|safe }}
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6">
+                <h2>{{ genus.data.name|titleCaps|safe}}</h2>
+                <p>{{ parsed|safe|linebreaks }}</p>
+            </div>
+            <!--TODO add list view of plants from this genus-->
+        </div>
+    </div>
+{% endblock %}

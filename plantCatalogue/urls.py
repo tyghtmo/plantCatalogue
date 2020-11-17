@@ -21,9 +21,13 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('search/', plants_view.query, name='search'),
     path('', plants_view.plantList),
-    path('plants/<str:slug>', plants_view.plant, name='plant'),
     path('genus', plants_view.genusList),
     path('family', plants_view.familyList),
     path('order', plants_view.orderList),
-    path('class', plants_view.classList)
+    path('class', plants_view.classList),
+    path('plants/<str:slug>', plants_view.plant, name='plant'),
+    path('genus/<str:slug>', plants_view.genus, name='genus'),
+    path('family/<str:slug>', plants_view.family, name='family'),
+    path('order/<str:slug>', plants_view.order, name='order'),
+    path('class/<str:slug>', plants_view.divisionClass, name='class')
 ]
