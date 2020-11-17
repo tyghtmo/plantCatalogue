@@ -39,6 +39,6 @@ def search(query, page, parent):
     response = json.loads(requests.get(url).text)
     response['links'] = cleanLinks(response['links'])
 
-    print(url)# TODO debugging
+    print(url)# DEBUG debugging
 
     return response
