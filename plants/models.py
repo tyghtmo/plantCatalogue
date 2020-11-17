@@ -15,3 +15,5 @@ class Plant(models.Model):
 
     def get_absolute_url(self):
         return reverse('plant', args=[self.slug])
+
+# TODO Implement User model that can save favourite plants

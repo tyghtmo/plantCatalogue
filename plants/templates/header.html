@@ -6,22 +6,47 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-    <!--TODO change active based on page-->
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Plants <span class="sr-only">(current)</span></a>
+
+      {% if request.path == '/'%}
+        <li class="nav-item active">
+      {% else %}
+        <li class="nav-item">
+      {% endif %}
+        <a class="nav-link" href="/">Plants</a>
       </li>
-      <li class="nav-item">
+
+      {% if request.path == '/genus'%}
+        <li class="nav-item active">
+      {% else %}
+        <li class="nav-item">
+      {% endif %}
         <a class="nav-link" href="/genus">Genus</a>
       </li>
-      <li class="nav-item">
+
+      {% if request.path == '/family'%}
+        <li class="nav-item active">
+      {% else %}
+        <li class="nav-item">
+      {% endif %}
         <a class="nav-link" href="/family">Family</a>
       </li>
-      <li class="nav-item">
+
+      {% if request.path == '/order'%}
+        <li class="nav-item active">
+      {% else %}
+        <li class="nav-item">
+      {% endif %}
         <a class="nav-link" href="/order">Order</a>
       </li>
-      <li class="nav-item">
+
+      {% if request.path == '/class'%}
+        <li class="nav-item active">
+      {% else %}
+        <li class="nav-item">
+      {% endif %}
         <a class="nav-link" href="/class">Class</a>
       </li>
+
     </ul>
     <form class="form-inline my-2 my-lg-0" action="{% url 'search'%}" method='get'>
       <input class="form-control mr-sm-2" name='q' type="search" placeholder="Search" aria-label="Search">
