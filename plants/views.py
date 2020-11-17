@@ -13,7 +13,7 @@ def plantList(requests):
         page = requests.GET.get('page')
 
     response = plants.get_all(page, 'plants')
-    return render(requests, 'plantList.html', {
+    return render(requests, 'lists/plantList.html', {
         'plants': response
     })
 
@@ -28,7 +28,7 @@ def plant(requests, slug):
     # JSON formatting for pretty printing
     pretty = json.dumps(response["data"], indent=4).replace('  ', '&emsp;')
 
-    return render(requests, 'plant.html', {
+    return render(requests, 'singles/plant.html', {
         'plant': response,
         'parsed': pretty,
     })
@@ -44,7 +44,7 @@ def genusList(requests):
         page = requests.GET.get('page')
 
     response = plants.get_all(page, 'genus')
-    return render(requests, 'genusList.html', {
+    return render(requests, 'lists/genusList.html', {
         'genus': response
     })
 
@@ -59,7 +59,7 @@ def familyList(requests):
         page = requests.GET.get('page')
 
     response = plants.get_all(page, 'families')
-    return render(requests, 'familyList.html', {
+    return render(requests, 'lists/familyList.html', {
         'family': response
     })
 
@@ -74,7 +74,7 @@ def orderList(requests):
         page = requests.GET.get('page')
 
     response = plants.get_all(page, 'division_orders')
-    return render(requests, 'orderList.html', {
+    return render(requests, 'lists/orderList.html', {
         'order': response
     })
 
@@ -89,7 +89,7 @@ def classList(requests):
         page = requests.GET.get('page')
 
     response = plants.get_all(page, 'division_classes')
-    return render(requests, 'classList.html', {
+    return render(requests, 'lists/classList.html', {
         'class': response
     })
 
@@ -106,6 +106,6 @@ def query(requests):
     query = requests.GET.get('q')
 
     response = plants.search(query, page, 'plants')
-    return render(requests, 'plantList.html', {
+    return render(requests, 'lists/plantList.html', {
         'plants': response
     })
