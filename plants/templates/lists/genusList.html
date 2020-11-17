@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+{% load plants_tags %}
 
 <div id="cardList" class="genusList">
 
@@ -13,7 +14,7 @@
         <a href="genus/{{ genus.slug }}">
             <div class="card genusCard">
                 <div class="card-body ">
-                    <h5 class="card-title">{{ genus.name|titleCaps|safe}}</h5>
+                    <h5 class="card-title">{{ genus.name|titleCaps|safe }}</h5>
                     <p class="card-text">Family: {% firstof genus.family.name "Unknown" %}</p>
                     <p class="card-text">Family Common Name: {% firstof genus.family.common_name "None" %}</p>
                 </div>
