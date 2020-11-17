@@ -9,11 +9,19 @@
 {% block content %}
     <div class="container-fluid">
         <div class="row">
-            <div class="col-6">
+            <div class="col">
                 <h2>{{ genus.data.name|titleCaps|safe}}</h2>
                 <p>{{ parsed|safe|linebreaks }}</p>
             </div>
-            <!--TODO add list view of plants from this genus-->
         </div>
     </div>
+
+{% if plants.data %}
+    {% include 'listByParent.html' with plants=plants %}
+{% else %}
+    <div class="container">
+        <h4 class="text-center">No Plant's Found in data. </h4>
+    </div>
+{% endif %}
+
 {% endblock %}

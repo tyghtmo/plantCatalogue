@@ -102,14 +102,18 @@ def genus(requests, slug):
     # <slug> unique genus identifier
     # <return> genus.html rendered with response JSON
 
+    page = getPage(requests)
+
     response = plants.get_single(slug, 'genus')
+    children = plants.search(slug, page, 'plants')
 
     # JSON formatting for pretty printing
     pretty = json.dumps(response["data"], indent=4).replace('  ', '&emsp;')
 
-    return render(requests, 'singles/genus.html', {
+    return render(requests, 'singles/single.html', {
         'genus': response,
         'parsed': pretty,
+        'plants': children
     })
 
 
@@ -118,15 +122,18 @@ def family(requests, slug):
     # <slug> unique family identifier
     # <return> family.html rendered with response JSON
 
+    page = getPage(requests)
+
     response = plants.get_single(slug, 'families')
+    children = plants.search(slug, page, 'plants')
 
     # JSON formatting for pretty printing
     pretty = json.dumps(response["data"], indent=4).replace('  ', '&emsp;')
 
-    # TODO change to family.html
-    return render(requests, 'singles/genus.html', {
+    return render(requests, 'singles/single.html', {
         'genus': response,
         'parsed': pretty,
+        'plants': children
     })
 
 
@@ -135,15 +142,18 @@ def order(requests, slug):
     # <slug> unique order identifier
     # <return> order.html rendered with response JSON
 
+    page = getPage(requests)
+
     response = plants.get_single(slug, 'division_orders')
+    children = plants.search(slug, page, 'plants')
 
     # JSON formatting for pretty printing
     pretty = json.dumps(response["data"], indent=4).replace('  ', '&emsp;')
 
-    # TODO change to order.html
-    return render(requests, 'singles/genus.html', {
+    return render(requests, 'singles/single.html', {
         'genus': response,
         'parsed': pretty,
+        'plants': children
     })
 
 
@@ -152,15 +162,18 @@ def divisionClass(requests, slug):
     # <slug> unique class identifier
     # <return> class.html rendered with response JSON
 
+    page = getPage(requests)
+
     response = plants.get_single(slug, 'division_classes')
+    children = plants.search(slug, page, 'plants')
 
     # JSON formatting for pretty printing
     pretty = json.dumps(response["data"], indent=4).replace('  ', '&emsp;')
 
-    # TODO change to family.html
-    return render(requests, 'singles/genus.html', {
+    return render(requests, 'singles/single.html', {
         'genus': response,
         'parsed': pretty,
+        'plants': children
     })
 #endregion
 
@@ -180,6 +193,17 @@ def query(requests):
     return render(requests, 'lists/plantList.html', {
         'plants': response
     })
+
+
+#endregion
+
+#region Helper Methods
+def getPage(req):
+    page = '1'
+    if req.GET.get('page'):
+        page = req.GET.get('page')
+
+    return page
 
 
 #endregion

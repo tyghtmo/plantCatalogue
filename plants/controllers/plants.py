@@ -16,7 +16,7 @@ def cleanLinks(links):
 
 def get_all(page, parent):
     # <page> url page object value
-    # <return> Paginated JSON containing 30 plants
+    # <return> Paginated JSON containing 20 plants
 
     url = 'https://trefle.io/api/v1/' + parent + '?token=' + token + '&page=' + page 
     response = json.loads(requests.get(url).text)
@@ -38,5 +38,7 @@ def search(query, page, parent):
     url = 'https://trefle.io/api/v1/' + parent +'/search?q=' + query + '&token=' + token + '&page=' + page
     response = json.loads(requests.get(url).text)
     response['links'] = cleanLinks(response['links'])
+
+    print(url)# TODO debugging
 
     return response
