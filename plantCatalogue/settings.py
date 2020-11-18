@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,6 +29,40 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+SITE_TITLE = "Site"
+
+# TODO add site title
+PWA_APP_NAME = "HEY"
+PWA_APP_DESCRIPTION = "My app description"
+PWA_APP_THEME_COLOR = "#0A0302"
+PWA_APP_BACKGROUND_COLOR = "#ffffff"
+PWA_APP_DISPLAY = "standalone"
+PWA_APP_SCOPE = "/"
+PWA_APP_ORIENTATION = "any"
+PWA_APP_START_URL = "/"
+PWA_APP_STATUS_BAR_COLOR = "default"
+PWA_APP_ICONS = [
+    {
+        "src": "/static/icons/plant.512x512.png",
+        "sizes": "512x512"
+    },
+    {
+        "src": "/static/icons/plant.64x64.png",
+        "sizes": "64x64"
+    }
+]
+PWA_APP_ICONS_APPLE = [
+    {
+        "src": "/static/images/plant.512x512.png",
+        "sizes": "512x512"
+    }
+]
+PWA_APP_SPLASH_SCREEN = []
+PWA_APP_DIR = "ltr"
+PWA_APP_LANG = "en-US"
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'plants/templates', 'serviceworker.js')
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,6 +73,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'plants',
+    'pwa'
 ]
 
 MIDDLEWARE = [
@@ -119,3 +155,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [ 
+    os.path.join(BASE_DIR, 'static'),
+    ]
+

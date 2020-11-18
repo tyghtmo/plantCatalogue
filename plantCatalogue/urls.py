@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from plants import views as plants_view
 
 urlpatterns = [
@@ -29,5 +29,6 @@ urlpatterns = [
     path('genus/<str:slug>', plants_view.genus, name='genus'),
     path('family/<str:slug>', plants_view.family, name='family'),
     path('order/<str:slug>', plants_view.order, name='order'),
-    path('class/<str:slug>', plants_view.divisionClass, name='class')
+    path('class/<str:slug>', plants_view.divisionClass, name='class'),
+    path('', include('pwa.urls')),
 ]
