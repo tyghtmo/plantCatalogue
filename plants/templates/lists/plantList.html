@@ -21,12 +21,14 @@
         <a href="/plants/{{ plant.slug }}">
             <div class="card plantCard">
                 <div class="card-body row">
-                    <div class="col">
-                        {% if plant.image_url %}
-                        <img class="plantListImage" src="{{ plant.image_url }}" alt="{{ plant.scientific_name }}" loading="lazy"/>
-                        {% endif %}
-                    </div>
-                    <div class="col-8">
+                    
+                    {% if plant.image_url %}
+                        <div class="col d-flex align-items-center">
+                            <img class="plantListImage" src="{{ plant.image_url }}" alt="{{ plant.scientific_name }}" loading="lazy"/>
+                        </div>
+                    {% endif %}
+                    
+                    <div class="col" style="min-width: 320px;">
                         <h5 class="card-title">
                             {% firstof  plant.common_name plant.scientific_name as value%}
                             {{ value|titleCaps|safe }}

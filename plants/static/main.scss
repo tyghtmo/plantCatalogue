@@ -10,132 +10,165 @@ $plantImgHeight: $cardHeight - 50px;
 
 //Device brerakpoints
 @mixin for-size($range) {
-    $phone-upper-boundary: 600px;
-    $tablet-portrait-upper-boundary: 900px;
-    $tablet-landscape-upper-boundary: 1600px;
-    $desktop-upper-boundary: 2000px;
-  
-    @if $range == phone-only {
-      @media (max-width: #{$phone-upper-boundary - 1}) { @content; }
-    } @else if $range == tablet-portrait-up {
-      @media (min-width: $phone-upper-boundary) { @content; }
-    } @else if $range == tablet-landscape-up {
-      @media (min-width: $tablet-portrait-upper-boundary) { @content; }
-    } @else if $range == desktop-up {
-      @media (min-width: $tablet-landscape-upper-boundary) { @content; }
-    } @else if $range == big-desktop-up {
-      @media (min-width: $desktop-upper-boundary) { @content; }
+  $phone-upper-boundary: 600px;
+  $tablet-portrait-upper-boundary: 900px;
+  $tablet-landscape-upper-boundary: 1600px;
+  $desktop-upper-boundary: 2000px;
+
+  @if $range==phone-only {
+    @media (max-width: #{$phone-upper-boundary - 1}) {
+      @content;
     }
   }
+
+  @else if $range==tablet-portrait-up {
+    @media (min-width: $phone-upper-boundary) {
+      @content;
+    }
+  }
+
+  @else if $range==tablet-landscape-up {
+    @media (min-width: $tablet-portrait-upper-boundary) {
+      @content;
+    }
+  }
+
+  @else if $range==desktop-up {
+    @media (min-width: $tablet-landscape-upper-boundary) {
+      @content;
+    }
+  }
+
+  @else if $range==big-desktop-up {
+    @media (min-width: $desktop-upper-boundary) {
+      @content;
+    }
+  }
+}
 
 
 ////////////////////////////////////////////////////////////////////////////////
 // CSS
 .plantListImage {
-    width: 100%;
-    height: $plantImgHeight;
-    object-fit: cover;
-    border-radius: 3%;
+  width: 100%;
+  height: $plantImgHeight;
+  object-fit: cover;
+  border-radius: 0.25rem;
+  min-width: 130px;
 }
 
-.plantImage{
+.plantImage {
   width: 100%;
   max-height: 80vh;
+  min-width: 50vw;
   object-fit: contain;
 }
 
 .plantCard {
-    margin-bottom: $cardSpacing;
-    height: 250px;
-    transition: all .2s ease-in-out;
+  margin-bottom: $cardSpacing;
+  min-height: 250px;
+  height: fit-content;
+  transition: all .2s ease-in-out;
 }
 
-.plantCard:hover{
-    transform: scale(1.1);
-    z-index: 1000;
+.plantCard:hover {
+  transform: scale(1.1);
+  z-index: 1000;
 }
 
-.genusCard, .familyCard, .orderCard, .classCard{
+.genusCard,
+.familyCard,
+.orderCard,
+.classCard {
   margin-bottom: $cardSpacing;
   height: 150px;
   transition: all .2s ease-in-out;
 }
 
-.genusCard:hover, .familyCard:hover, .orderCard:hover, .classCard:hover{
+.genusCard:hover,
+.familyCard:hover,
+.orderCard:hover,
+.classCard:hover {
   transform: scale(1.1);
   z-index: 1000;
 }
 
-#cardList{
-    display: flex;
-    flex-wrap: wrap;
+#cardList {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.cardContainer{
-    a {
-        text-decoration: none;
-        color: unset;
-    }
-
-    a:hover{
-        text-decoration: none;
-        color: unset;  
-    }
-
-    
-
-}
-
-.plantList{
-  .cardContainer{
-    @include for-size(phone-only){
-      flex: 100%;
+.cardContainer {
+  a {
+    text-decoration: none;
+    color: unset;
   }
 
-  @include for-size(tablet-landscape-up){
+  a:hover {
+    text-decoration: none;
+    color: unset;
+  }
+}
+
+.container-fluid,
+.cardContainer {
+  @include for-size(phone-only) {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+}
+
+.plantList {
+  .cardContainer {
+    @include for-size(phone-only) {
+      flex: 100%;
+    }
+
+    @include for-size(tablet-landscape-up) {
       flex: 50%;
-   }
+    }
 
-  @include for-size(desktop-up){
+    @include for-size(desktop-up) {
       flex: 33%;
-  }
+    }
 
-  @include for-size(big-desktop-up){
+    @include for-size(big-desktop-up) {
       flex: 25%;
-  }
+    }
   }
 }
 
-.genusList, .familyList, .orderList, .classList{
-  .cardContainer{
-    @include for-size(phone-only){
+.genusList,
+.familyList,
+.orderList,
+.classList {
+  .cardContainer {
+    @include for-size(phone-only) {
       flex: 100%;
-  }
+    }
 
-  @include for-size(tablet-portrait-up){
-    flex: 50%;
-  }
+    @include for-size(tablet-portrait-up) {
+      flex: 50%;
+    }
 
-  @include for-size(tablet-landscape-up){
+    @include for-size(tablet-landscape-up) {
       flex: 33%;
-   }
+    }
 
-  @include for-size(desktop-up){
+    @include for-size(desktop-up) {
       flex: 25%;
-  }
+    }
 
-  @include for-size(big-desktop-up){
+    @include for-size(big-desktop-up) {
       flex: 20%;
-  }
+    }
   }
 }
 
 #content {
-    width: 90%;
-    margin-left: auto;
-    margin-right:auto;
-    margin-top: 5em;
-    margin-bottom: 10em;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5em;
+  margin-bottom: 10em;
 }
-
-

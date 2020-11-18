@@ -7,7 +7,7 @@ import re
 token = os.environ['TREFLETOKEN']
 
 
-def cleanLinks(links):
+def getPageLinks(links):
     # changes link in api to ?page=x
 
     for link in links:
@@ -25,13 +25,30 @@ def cleanLinks(links):
     return links
 
 
+def getPageAndSearchLinks(links):
+    
+    for link in links:
+
+        newLink = ''
+        #finds and extracts ?page=999 from links 
+        regex = r"[\?\&]{1}page{1}\=\d*\&q=[a-zA-Z0-9]*"
+        matches = re.finditer(regex, links[link], re.MULTILINE)
+
+        for matchNum, match in enumerate(matches, start=1):
+            newLink = match.group()
+
+        links[link] = newLink
+        
+    return links
+
+
 def get_all(page, parent):
     # <page> url page object value
     # <return> Paginated JSON containing 20 plants
 
     url = 'https://trefle.io/api/v1/' + parent + '?token=' + token + '&page=' + page 
     response = json.loads(requests.get(url).text)
-    response['links'] = cleanLinks(response['links'])
+    response['links'] = getPageLinks(response['links'])
 
     return response
 
@@ -52,7 +69,7 @@ def search(query, page, parent):
     url = 'https://trefle.io/api/v1/' + parent +'/search?q=' + query + '&token=' + token + '&page=' + page
     response = json.loads(requests.get(url).text)
     if 'links' in response:
-        response['links'] = cleanLinks(response['links'])
+        response['links'] = getPageAndSearchLinks(response['links'])
 
     print(url)# DEBUG
 
@@ -68,7 +85,7 @@ def get_children_from_parent(parent, child, page, slug):
 
     if response.status_code == 200:
         response = json.loads(requests.get(url).text)
-        response['links'] = cleanLinks(response['links'])
+        response['links'] = getPageLinks(response['links'])
 
     print(url)# DEBUG
     return response

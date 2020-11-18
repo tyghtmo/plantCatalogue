@@ -14,12 +14,12 @@
                 <div class="card-body row">
                     <!--{{ child }}-->
                     {% if child.image_url %}
-                    <div class="col-4">
+                    <div class="col">
                         <img class="plantListImage" src="{{ child.image_url }}" alt="{{ child.scientific_name }}" loading="lazy"/>
                     </div>
                     {% endif %}
 
-                    <div class="col">
+                    <div class="col" style="min-width: 290px;">
                         <h5 class="card-title">
                             {% firstof child.scientific_name child.name as value%}
                             {{ value|titleCaps|safe }}

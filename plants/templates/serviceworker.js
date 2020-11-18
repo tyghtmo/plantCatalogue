@@ -24,7 +24,7 @@ workbox.precaching.precacheAndRoute(appShell.map(url => ({
 // Serve the app shell from the cache.
 workbox.routing.registerRoute(({ url }) => appShell.includes(url), new workbox.strategies.CacheOnly());
 
-//Cache js and css
+//Cache static external js and css
 workbox.routing.registerRoute(
   ({request}) => request.destination === 'script' ||
                   request.destination === 'style',
@@ -33,7 +33,7 @@ workbox.routing.registerRoute(
   })
 );
 
-//Cache images
+//Cache dynamic images
 workbox.routing.registerRoute(
     ({ request }) => request.destination === 'image',
     new workbox.strategies.CacheFirst({

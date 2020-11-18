@@ -12,7 +12,7 @@
 {% block content %}
     <div class="container-fluid mb-4">
         <div class="row">
-            <div class="col-6">
+            <div class="col" style="min-width: 280px;">
 
                 {% if plant.data.common_name %}
                     <h2>{{ plant.data.common_name|titleCaps|safe}}</h2>
@@ -31,7 +31,7 @@
 
                 {% comment %} <p>{{ parsed|safe|linebreaks }}</p> {% endcomment %}
             </div>
-            <div class="col-6">
+            <div class="col">
                 <img class="mx-auto d-block plantImage" src="{{ plant.data.image_url }}" alt="{{ plant.data.scientific_name }}" loading="lazy"/>
             </div>
         </div>
