@@ -23,7 +23,7 @@
                 <div class="card-body row">
                     <div class="col">
                         {% if plant.image_url %}
-                        <img class="plantListImage" src="{{ plant.image_url }}" alt="{{ plant.scientific_name }}" />
+                        <img class="plantListImage" src="{{ plant.image_url }}" alt="{{ plant.scientific_name }}" loading="lazy"/>
                         {% endif %}
                     </div>
                     <div class="col-8">

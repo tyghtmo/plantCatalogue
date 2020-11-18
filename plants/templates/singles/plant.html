@@ -32,7 +32,7 @@
                 {% comment %} <p>{{ parsed|safe|linebreaks }}</p> {% endcomment %}
             </div>
             <div class="col-6">
-                <img class="mx-auto d-block plantImage" src="{{ plant.data.image_url }}" alt="{{ plant.data.scientific_name }}"/>
+                <img class="mx-auto d-block plantImage" src="{{ plant.data.image_url }}" alt="{{ plant.data.scientific_name }}" loading="lazy"/>
             </div>
         </div>
     </div>

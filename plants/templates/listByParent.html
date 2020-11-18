@@ -15,7 +15,7 @@
                     <!--{{ child }}-->
                     {% if child.image_url %}
                     <div class="col-4">
-                        <img class="plantListImage" src="{{ child.image_url }}" alt="{{ child.scientific_name }}" />
+                        <img class="plantListImage" src="{{ child.image_url }}" alt="{{ child.scientific_name }}" loading="lazy"/>
                     </div>
                     {% endif %}
 
