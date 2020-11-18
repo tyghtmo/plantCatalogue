@@ -86,7 +86,13 @@ def plant(requests, slug):
     # <slug> unique plant identifier
     # <return> plant.html rendered with raw and pretty response JSON
 
+    # Defaults to empty url page object
+    page = ''
+    if requests.GET.get('page'):
+        page = requests.GET.get('page')
+
     response = plants.get_single(slug, 'plants')
+    species = plants.get_children_from_parent('plants', 'species', page, slug)
 
     # JSON formatting for pretty printing
     pretty = json.dumps(response["data"], indent=4).replace('  ', '&emsp;')
@@ -94,6 +100,8 @@ def plant(requests, slug):
     return render(requests, 'singles/plant.html', {
         'plant': response,
         'parsed': pretty,
+        'species': species,
+        'child_type': 'plants'
     })
 
 
@@ -191,7 +199,7 @@ def query(requests):
 
     query = requests.GET.get('q')
 
-    response = plants.search(query, page, 'genus')
+    response = plants.search(query, page, 'plants')
     return render(requests, 'lists/plantList.html', {
         'plants': response
     })

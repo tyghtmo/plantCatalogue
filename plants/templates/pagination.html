@@ -22,7 +22,7 @@
                 <li class="page-item"><a class="page-link" href="{{ request.path }}{{ parent.links.next }}">Next</a></li>
             {% endif %}
 
-            {% if parent.links.self != parent.links.last%}
+            {% if parent.links.self != parent.links.last and parent.links.first != parent.links.last%}
                 <li class="page-item"><a class="page-link" href="{{ request.path }}{{ parent.links.last }}">Last</a></li>
             {% endif %}
         </ul>

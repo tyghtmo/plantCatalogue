@@ -1,6 +1,7 @@
 import requests
 import json
 import os
+import re
 
 # Trefle.io token as environmental variable
 token = os.environ['TREFLETOKEN']
@@ -10,7 +11,17 @@ def cleanLinks(links):
     # changes link in api to ?page=x
 
     for link in links:
-        links[link] = '?' + str(links[link]).split('?')[1]  
+
+        newLink = ''
+        #finds and extracts ?page=999 from links 
+        regex = r"[\?\&]{1}(page){1}\=\d*"
+        matches = re.finditer(regex, links[link], re.MULTILINE)
+
+        for matchNum, match in enumerate(matches, start=1):
+            newLink = match.group()
+
+        links[link] = newLink.replace('&', '?')
+
     return links
 
 
@@ -31,6 +42,8 @@ def get_single(slug, parent):
 
     url = 'http://trefle.io/api/v1/' + parent +'/' + slug + "?token=" + token
     response = json.loads(requests.get(url).text)
+
+    print(url)# DEBUG
 
     return response
 

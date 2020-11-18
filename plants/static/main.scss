@@ -40,6 +40,8 @@ $plantImgHeight: $cardHeight - 50px;
 
 .plantImage{
   width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
 }
 
 .plantCard {

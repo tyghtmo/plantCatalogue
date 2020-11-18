@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container-fluid">
+    <div class="container-fluid mb-4">
         <div class="row">
             <div class="col-6">
 
@@ -27,11 +27,21 @@
                         {{plant.data.main_species.family_common_name}}
                     {% endif %}
                 </p>
-                <p>{{ parsed|safe|linebreaks }}</p>
+
+
+                {% comment %} <p>{{ parsed|safe|linebreaks }}</p> {% endcomment %}
             </div>
             <div class="col-6">
                 <img class="mx-auto d-block plantImage" src="{{ plant.data.image_url }}" alt="{{ plant.data.scientific_name }}"/>
             </div>
         </div>
     </div>
+
+    {% if species.data %}
+        <div class="container-fluid">
+        <h3>Subspecies</h3>
+            {% include 'listByParent.html' with children=species child_type=child_type %}
+        </div>
+    {% endif %}
+
 {% endblock %}

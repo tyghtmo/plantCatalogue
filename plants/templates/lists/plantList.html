@@ -10,9 +10,10 @@
 
 {% block content %}
 {% load plants_tags %}
-<!--DEBUG remove after development-->
-<!--{{ plants }}-->
-<!--{{ request.path }}-->
+
+<!-- TODO Add filter functionality -->
+{% comment %} {% include 'filterBar.html' %} {% endcomment %}
+
 <div id="cardList" class="plantList">
 
     {% for plant in plants.data %}
