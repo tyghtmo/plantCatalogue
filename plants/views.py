@@ -105,15 +105,16 @@ def genus(requests, slug):
     page = getPage(requests)
 
     response = plants.get_single(slug, 'genus')
-    children = plants.search(slug, page, 'plants')
+    children = plants.get_children_from_parent('genus', 'plants', page, slug)
 
     # JSON formatting for pretty printing
     pretty = json.dumps(response["data"], indent=4).replace('  ', '&emsp;')
 
     return render(requests, 'singles/single.html', {
-        'genus': response,
+        'parent': response,
         'parsed': pretty,
-        'plants': children
+        'children': children,
+        'child_type': 'plants'
     })
 
 
@@ -125,15 +126,16 @@ def family(requests, slug):
     page = getPage(requests)
 
     response = plants.get_single(slug, 'families')
-    children = plants.search(slug, page, 'plants')
+    children = plants.get_children_from_parent('families', 'genus', page, slug)
 
     # JSON formatting for pretty printing
     pretty = json.dumps(response["data"], indent=4).replace('  ', '&emsp;')
 
     return render(requests, 'singles/single.html', {
-        'genus': response,
+        'parent': response,
         'parsed': pretty,
-        'plants': children
+        'children': children,
+        'child_type': 'genus'
     })
 
 
@@ -145,15 +147,15 @@ def order(requests, slug):
     page = getPage(requests)
 
     response = plants.get_single(slug, 'division_orders')
-    children = plants.search(slug, page, 'plants')
+    children = plants.get_children_from_parent('division_orders', 'families', page, slug)
 
     # JSON formatting for pretty printing
     pretty = json.dumps(response["data"], indent=4).replace('  ', '&emsp;')
 
     return render(requests, 'singles/single.html', {
-        'genus': response,
+        'parent': response,
         'parsed': pretty,
-        'plants': children
+        'children': children
     })
 
 
@@ -165,15 +167,15 @@ def divisionClass(requests, slug):
     page = getPage(requests)
 
     response = plants.get_single(slug, 'division_classes')
-    children = plants.search(slug, page, 'plants')
+    children = plants.get_children_from_parent('divison_classes', 'division_orders', page, slug)
 
     # JSON formatting for pretty printing
     pretty = json.dumps(response["data"], indent=4).replace('  ', '&emsp;')
 
     return render(requests, 'singles/single.html', {
-        'genus': response,
+        'parent': response,
         'parsed': pretty,
-        'plants': children
+        'children': children
     })
 #endregion
 
@@ -189,7 +191,7 @@ def query(requests):
 
     query = requests.GET.get('q')
 
-    response = plants.search(query, page, 'plants')
+    response = plants.search(query, page, 'genus')
     return render(requests, 'lists/plantList.html', {
         'plants': response
     })

@@ -14,3 +14,8 @@ def titleCaps(value):
 @register.filter
 def stripSlashes(value):
     return value.replace('/', '')
+
+
+@register.simple_tag
+def define(val=None):
+  return val

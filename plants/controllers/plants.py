@@ -31,14 +31,31 @@ def get_single(slug, parent):
 
     url = 'http://trefle.io/api/v1/' + parent +'/' + slug + "?token=" + token
     response = json.loads(requests.get(url).text)
+
     return response
 
 def search(query, page, parent):
 
     url = 'https://trefle.io/api/v1/' + parent +'/search?q=' + query + '&token=' + token + '&page=' + page
     response = json.loads(requests.get(url).text)
-    response['links'] = cleanLinks(response['links'])
+    if 'links' in response:
+        response['links'] = cleanLinks(response['links'])
 
-    print(url)# DEBUG debugging
+    print(url)# DEBUG
 
+    return response
+
+def get_children_from_parent(parent, child, page, slug):
+    # <page> url page object value
+    # <return> Paginated JSON containing 20 plants
+
+    url = 'https://trefle.io/api/v1/' + parent + '/' + slug + '/' + child + '?token=' + token + '&page=' + page
+
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        response = json.loads(requests.get(url).text)
+        response['links'] = cleanLinks(response['links'])
+
+    print(url)# DEBUG
     return response

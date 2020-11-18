@@ -1,27 +1,49 @@
 {% load plants_tags %}
 
-<div id="cardList" class="plantList">
-    {% for plant in plants.data%}
+{% if child_type == 'plants' %}
+    {% define "plant" as class%}
+{% else %}
+    {% define "genus" as class%}
+{% endif %}
+
+<div id="cardList" class="{{ class }}List">
+    {% for child in children.data%}
     <div class="container cardContainer">
-        <a href="/plants/{{ plant.slug }}">
-            <div class="card plantCard">
+        <a href="/{{ child_type }}/{{ child.slug }}">
+            <div class="card {{ class }}Card">
                 <div class="card-body row">
-                    <div class="col">
-                        {% if plant.image_url %}
-                        <img class="plantListImage" src="{{ plant.image_url }}" alt="{{ plant.scientific_name }}" />
-                        {% endif %}
+                    <!--{{ child }}-->
+                    {% if child.image_url %}
+                    <div class="col-4">
+                        <img class="plantListImage" src="{{ child.image_url }}" alt="{{ child.scientific_name }}" />
                     </div>
-                    <div class="col-8">
+                    {% endif %}
+
+                    <div class="col">
                         <h5 class="card-title">
-                            {% firstof  plant.common_name plant.scientific_name as value%}
+                            {% firstof child.scientific_name child.name as value%}
                             {{ value|titleCaps|safe }}
                         </h5>
-                        <p class="card-text">Scientific Name: {{ plant.scientific_name }}</p>
-                        <p class="card-text">Family: {{ plant.family }}</p>
-                        {% if plant.family_common_name %}
-                            <p class="card-text">Family Common Name: {{ plant.family_common_name }}</p>
+
+                        {% if child.common_name %}
+                            <p class="card-text">Common Name: {{ child.common_name }}</p>
                         {% endif %}
-                        <p class="card-text">Genus: {{ plant.genus }}</p>
+
+                        {% if  child.scientific_name %}
+                        <p class="card-text">Scientific Name: {{ child.scientific_name }}</p>
+                        {% endif %}
+
+                        {% if child.family %}
+                            {% if not child.family.name %}
+                                <p class="card-text">Family: {{ child.family }}</p>
+                            {% endif %}
+                        {% endif %}
+
+                        {% comment %} <p>{{ child }}</p> {% endcomment %}
+                        {% if child.family_common_name %}
+                            <p class="card-text">Family Common Name: {{ child.family_common_name }}</p>
+                        {% endif %}
+
                     </div>
                 </div>
             </div>
@@ -31,4 +53,4 @@
 
 </div>
 
-{% include 'pagination.html' with parent=plants %}
+{% include 'pagination.html' with parent=children %}

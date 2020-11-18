@@ -2,25 +2,30 @@
 {% load plants_tags %}
 
 {% block title %}
-    {% firstof genus.data.common_name genus.data.name as value %}
+    {% firstof parent.data.common_name parent.data.name as value %}
     {{ value|titleCaps|safe }}
 {% endblock %}
 
 {% block content %}
     <div class="container-fluid">
         <div class="row">
-            <div class="col">
-                <h2>{{ genus.data.name|titleCaps|safe}}</h2>
-                <p>{{ parsed|safe|linebreaks }}</p>
+            <div class="col mb-2">
+                <h2>{{ parent.data.name|titleCaps|safe}}</h2>
+                <!--DEBUG: {{ parsed|safe|linebreaks }}-->
+                
+                {% if parent.data.common_name %}
+                    <h4>{{ parent.data.common_name }}</h4>
+                {% endif %}
+
             </div>
         </div>
     </div>
 
-{% if plants.data %}
-    {% include 'listByParent.html' with plants=plants %}
+{% if children.data %}
+    {% include 'listByParent.html' with children=children child_type=child_type %}
 {% else %}
     <div class="container">
-        <h4 class="text-center">No Plant's Found in data. </h4>
+        <h4 class="text-center">No Children Found in data. </h4>
     </div>
 {% endif %}
 
