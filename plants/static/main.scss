@@ -168,22 +168,31 @@ h6 {
   border: none !important;
 }
 
-.plantInfo{
-  border-left: none!important;
-  border-right: none!important;
-  border-bottom: none!important;
+.plantInfo {
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
   border-radius: 0px;
 }
 
 .plantInfoLine {
   background-color: transparent !important;
-  border-left: none!important;
-  border-right: none!important;
-  border-top: none!important;
-  
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none !important;
+
   &:hover {
     color: green;
     transform: scale(1.05);
+  }
+}
+
+.pagination {
+  .page-item.active {
+    .page-link {
+      background-color: #28A745;
+      border-color: #28A745;
+    }
   }
 }
 
