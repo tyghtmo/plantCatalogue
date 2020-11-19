@@ -14,7 +14,7 @@
         <a href="order/{{ order.slug }}">
             <div class="card orderCard">
                 <div class="card-body ">
-                    <h5 class="card-title">{{ order.name|titleCaps|safe}}</h5>
+                    <h3 class="card-title">{{ order.name|titleCaps|safe}}</h3>
                     <p class="card-text">Class: {% firstof order.division_class.name "Unknown" %}</p>
                     <p class="card-text">Phylum: {% firstof order.division_class.division.name "Unknown" %}</p>
                 </div>

@@ -10,7 +10,7 @@
                 <li class="page-item"><a class="page-link" href="{{ request.path }}{{ parent.links.prev }}">Prev</a></li>
             {% endif %}
 
-            <li class="page-item active"><a class="page-link" href="{{ request.path }}{{ parent.links.self }}">
+            <li class="page-item active"><a class="page-link" href="{{ request.path }}{{ parent.links.self }}" style="color:white;">
                 {% if request.GET.page %} 
                     {{request.GET.page}}
                 {% else %} 

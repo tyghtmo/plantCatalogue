@@ -14,11 +14,10 @@ def getPageLinks(links):
 
         newLink = ''
         #finds and extracts ?page=999 from links 
-        regex = r"[\?\&]{1}(page){1}\=\d*"
-        matches = re.finditer(regex, links[link], re.MULTILINE)
+        regex = r"[\?\&]{1}page{1}\=\d*"
+        matches = re.findall(regex, links[link], re.MULTILINE)
 
-        for matchNum, match in enumerate(matches, start=1):
-            newLink = match.group()
+        newLink = matches[0]
 
         links[link] = newLink.replace('&', '?')
 
@@ -32,10 +31,9 @@ def getPageAndSearchLinks(links):
         newLink = ''
         #finds and extracts ?page=999 from links 
         regex = r"[\?\&]{1}page{1}\=\d*\&q=[a-zA-Z0-9]*"
-        matches = re.finditer(regex, links[link], re.MULTILINE)
+        matches = re.findall(regex, links[link], re.MULTILINE)
 
-        for matchNum, match in enumerate(matches, start=1):
-            newLink = match.group()
+        newLink = matches[0]
 
         links[link] = newLink
         

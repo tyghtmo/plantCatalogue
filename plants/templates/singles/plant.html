@@ -12,21 +12,122 @@
 {% block content %}
     <div class="container-fluid mb-4">
         <div class="row">
-            <div class="col" style="min-width: 280px;">
+            <div class="col" style="min-width: 480px;">
 
                 {% if plant.data.common_name %}
-                    <h2>{{ plant.data.common_name|titleCaps|safe}}</h2>
-                    <h4>{{ plant.data.scientific_name|titleCaps|safe}}</h4>
+                    <h1>{{ plant.data.common_name|titleCaps|safe}}</h2>
+                    <h2>{{ plant.data.scientific_name|titleCaps|safe}}</h2>
                 {% else %}
                     <h2>{{ plant.data.scientific_name }}</h2>
                 {% endif %}
 
-                <p>Genus: {{ plant.data.main_species.genus }}
-                <p>Family: {{ plant.data.main_species.family }}
-                 -  {%if plant.data.main_species.family_common_name %}
-                        {{plant.data.main_species.family_common_name}}
-                    {% endif %}
-                </p>
+                <div class="card plantInfo">
+                    <ul class="list-group list-group-flush">
+
+                        <a href="/genus/{{ plant.data.main_species.genus|lower }}">
+                            <div class="list-group-item d-flex justify-content-between plantInfoLine">
+                                <h5 class="m-0">Genus:</h5>
+                                <p class="m-0">{{ plant.data.main_species.genus }}</p>
+                            </div>
+                        </a>
+
+                        <a href="/family/{{ plant.data.main_species.family|lower }}">
+                            <div class="list-group-item d-flex justify-content-between plantInfoLine">
+                                <h5 class="m-0">Family:</h5>
+                                <p class="m-0">{{ plant.data.main_species.family }}</p>
+                            </div>
+                        </a>
+
+                        {%if plant.data.main_species.family_common_name %}
+                            <a href="/family/{{ plant.data.main_species.family|lower }}">
+                                <div class="list-group-item d-flex justify-content-between plantInfoLine">
+                                    <h5 class="m-0">Family Common Name:</h5>
+                                    <p class="m-0">{{ plant.data.main_species.family_common_name|titleCaps }}</p>
+                                </div>
+                            </a>
+                        {% endif %}
+
+                        {% if plant.data.year %}
+                        <div class="list-group-item d-flex justify-content-between plantInfoLine">
+                            <h5 class="m-0">Year Discovered:</h5>
+                            <p class="m-0">{{ plant.data.year }}</p>
+                        </div>
+                        {% endif %}
+
+                        {% if plant.data.author %}
+                        <div class="list-group-item d-flex justify-content-between plantInfoLine">
+                            <h5 class="m-0">Discovered by:</h5>
+                            <p class="m-0">{{ plant.data.author|titleCaps }}</p>
+                        </div>
+                        {% endif %}
+
+                        {% if plant.data.bibliography%}
+                        <div class="list-group-item d-flex justify-content-between plantInfoLine">
+                            <h5 class="m-0">First Publication:</h5>
+                            <p class="m-0">{{ plant.data.bibliography }}</p>
+                        </div>
+                        {% endif %}
+
+                        {% if plant.data.main_species.specifications.maximum_height.cm %}
+                        <div class="list-group-item d-flex justify-content-between plantInfoLine">
+                            <h5 class="m-0">Average Height:</h5>
+                            <p class="m-0">{{ plant.data.main_species.specifications.maximum_height.cm }} cm</p>
+                        </div>
+                        {% endif %}
+
+                        {% if plant.data.main_species.specifications.ligneous_type %}
+                        <div class="list-group-item d-flex justify-content-between plantInfoLine">
+                            <h5 class="m-0">Ligneous Type:</h5>
+                            <p class="m-0">{{ plant.data.main_species.specifications.ligneous_type|titleCaps }}</p>
+                        </div>
+                        {% endif %}
+
+                        {% if plant.data.main_species.specifications.growth_form %}
+                        <div class="list-group-item d-flex justify-content-between plantInfoLine">
+                            <h5 class="m-0">Growth Form:</h5>
+                            <p class="m-0">{{ plant.data.main_species.specifications.growth_form|titleCaps }}</p>
+                        </div>
+                        {% endif %}
+
+                        {% if plant.data.main_species.specifications.growth_rate %}
+                        <div class="list-group-item d-flex justify-content-between plantInfoLine">
+                            <h5 class="m-0">Growth Rate:</h5>
+                            <p class="m-0">{{ plant.data.main_species.specifications.growth_rate|titleCaps }}</p>
+                        </div>
+                        {% endif %}
+
+                        {% if plant.data.main_species.growth.ph_maximum and plant.data.main_species.growth.ph_minimum %}
+                        <div class="list-group-item d-flex justify-content-between plantInfoLine">
+                            <h5 class="m-0">Ideal pH Range:</h5>
+                            <p class="m-0">{{ plant.data.main_species.growth.ph_minimum }} - {{ plant.data.main_species.growth.ph_maximum }}</p>
+                        </div>
+                        {% endif %}
+
+                        {% if plant.data.main_species.growth.minimum_precipitation.mm and plant.data.main_species.growth.maximum_precipitation.mm %}
+                        <div class="list-group-item d-flex justify-content-between plantInfoLine">
+                            <h5 class="m-0">Ideal Yearly Precipitation Range:</h5>
+                            <p class="m-0"> {{ plant.data.main_species.growth.minimum_precipitation.mm }}mm - {{ plant.data.main_species.growth.maximum_precipitation.mm }}mm</p>
+                        </div>
+                        {% endif %}
+
+                        {% if plant.data.main_species.growth.minimum_root_depth.cm %}
+                        <div class="list-group-item d-flex justify-content-between plantInfoLine">
+                            <h5 class="m-0">Minimum Root Depth:</h5>
+                            <p class="m-0">{{ plant.data.main_species.growth.minimum_root_depth.cm }}cm</p>
+                        </div>
+                        {% endif %}
+
+                        {% comment %} Template 
+                        {% if %}
+                        <div class="list-group-item d-flex justify-content-between plantInfoLine">
+                            <h5 class="m-0">...</h5>
+                            <p class="m-0">{{ ... }}</p>
+                        </div>
+                        {% endif %}
+                        {% endcomment %}
+
+                    </ul>
+                </div>
 
 
                 {% comment %} <p>{{ parsed|safe|linebreaks }}</p> {% endcomment %}
@@ -39,7 +140,7 @@
 
     {% if species.data %}
         <div class="container-fluid">
-        <h3>Subspecies</h3>
+        <h1>Subspecies</h1>
             {% include 'listByParent.html' with children=species child_type=child_type %}
         </div>
     {% endif %}

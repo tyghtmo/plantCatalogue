@@ -29,16 +29,16 @@
                     {% endif %}
                     
                     <div class="col" style="min-width: 320px;">
-                        <h5 class="card-title">
+                        <h3 class="card-title">
                             {% firstof  plant.common_name plant.scientific_name as value%}
                             {{ value|titleCaps|safe }}
-                        </h5>
+                        </h3>
                         <p class="card-text">Scientific Name: {{ plant.scientific_name }}</p>
+                        <p class="card-text">Genus: {{ plant.genus }}</p>
                         <p class="card-text">Family: {{ plant.family }}</p>
                         {% if plant.family_common_name %}
                             <p class="card-text">Family Common Name: {{ plant.family_common_name }}</p>
                         {% endif %}
-                        <p class="card-text">Genus: {{ plant.genus }}</p>
                     </div>
                 </div>
             </div>

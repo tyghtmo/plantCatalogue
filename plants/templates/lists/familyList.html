@@ -14,7 +14,7 @@
         <a href="family/{{ family.slug }}">
             <div class="card familyCard">
                 <div class="card-body ">
-                    <h5 class="card-title">{{ family.name|titleCaps|safe}}</h5>
+                    <h3 class="card-title">{{ family.name|titleCaps|safe}}</h3>
                     <p class="card-text">Common Name: {% firstof  family.common_name "None" %}</p>
                     <p class="card-text">Order: {% firstof family.division_order.name "Unknown" %}</p>
                 </div>

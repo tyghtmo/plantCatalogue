@@ -20,14 +20,10 @@
                     {% endif %}
 
                     <div class="col" style="min-width: 290px;">
-                        <h5 class="card-title">
-                            {% firstof child.scientific_name child.name as value%}
+                        <h3 class="card-title">
+                            {% firstof child.common_name child.scientific_name as value%}
                             {{ value|titleCaps|safe }}
-                        </h5>
-
-                        {% if child.common_name %}
-                            <p class="card-text">Common Name: {{ child.common_name }}</p>
-                        {% endif %}
+                        </h3>
 
                         {% if  child.scientific_name %}
                         <p class="card-text">Scientific Name: {{ child.scientific_name }}</p>

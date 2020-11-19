@@ -98,18 +98,6 @@ $plantImgHeight: $cardHeight - 50px;
   flex-wrap: wrap;
 }
 
-.cardContainer {
-  a {
-    text-decoration: none;
-    color: unset;
-  }
-
-  a:hover {
-    text-decoration: none;
-    color: unset;
-  }
-}
-
 .container-fluid,
 .cardContainer {
   @include for-size(phone-only) {
@@ -165,10 +153,54 @@ $plantImgHeight: $cardHeight - 50px;
   }
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 300 !important;
+}
+
+.filterCard {
+  border-radius: 0px !important;
+  flex-grow: 1;
+  border: none !important;
+}
+
+.plantInfo{
+  border-left: none!important;
+  border-right: none!important;
+  border-bottom: none!important;
+  border-radius: 0px;
+}
+
+.plantInfoLine {
+  background-color: transparent !important;
+  border-left: none!important;
+  border-right: none!important;
+  border-top: none!important;
+  
+  &:hover {
+    color: green;
+    transform: scale(1.05);
+  }
+}
+
 #content {
   width: 90%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 5em;
   margin-bottom: 10em;
+
+  a {
+    text-decoration: none;
+    color: unset;
+  }
+
+  a:hover {
+    text-decoration: none;
+    color: unset;
+  }
 }
