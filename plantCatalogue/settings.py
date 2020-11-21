@@ -26,42 +26,7 @@ SECRET_KEY = 'a0&^&h)!im%9w)^s8lcwp^31erd*#24!7*+8@gmu3ucj(mw4th'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['plantCatalogue.eba-vshfwmi9.us-west-2.elasticbeanstalk.com']
-
-
-SITE_TITLE = "Site"
-
-# TODO add site title
-PWA_APP_NAME = "HEY"
-PWA_APP_DESCRIPTION = "My app description"
-PWA_APP_THEME_COLOR = "#0A0302"
-PWA_APP_BACKGROUND_COLOR = "#ffffff"
-PWA_APP_DISPLAY = "standalone"
-PWA_APP_SCOPE = "/"
-PWA_APP_ORIENTATION = "any"
-PWA_APP_START_URL = "/"
-PWA_APP_STATUS_BAR_COLOR = "default"
-PWA_APP_ICONS = [
-    {
-        "src": "/static/icons/plant.512x512.png",
-        "sizes": "512x512"
-    },
-    {
-        "src": "/static/icons/plant.64x64.png",
-        "sizes": "64x64"
-    }
-]
-PWA_APP_ICONS_APPLE = [
-    {
-        "src": "/static/images/plant.512x512.png",
-        "sizes": "512x512"
-    }
-]
-PWA_APP_SPLASH_SCREEN = []
-PWA_APP_DIR = "ltr"
-PWA_APP_LANG = "en-US"
-PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'plants/static', 'serviceworker.js')
-
+ALLOWED_HOSTS = ['plantCatalogue.eba-vshfwmi9.us-west-2.elasticbeanstalk.com', 'localhost']
 
 # Application definition
 
