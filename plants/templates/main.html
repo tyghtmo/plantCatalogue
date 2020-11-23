@@ -33,9 +33,15 @@
         if ('serviceWorker' in navigator) {
             // Use the window load event to keep the page load performant
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/serviceworker.js');
-            });
-        }
+                navigator.serviceWorker.register('/serviceworker.js').then(
+                    function(reg){
+                        console.log('Service worker registered');
+                    })
+                    .catch(function(error){
+                        console.log(error)
+                    });
+                });
+            }
     </script>
 
     <!-- TODO add site title -->
