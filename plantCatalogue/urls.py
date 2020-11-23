@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView
 from plants import views as plants_view
 
 urlpatterns = [
@@ -30,5 +31,8 @@ urlpatterns = [
     path('family/<str:slug>', plants_view.family, name='family'),
     path('order/<str:slug>', plants_view.order, name='order'),
     path('class/<str:slug>', plants_view.divisionClass, name='class'),
-    path('', include('pwa.urls')),
+    path('serviceworker.js', (TemplateView.as_view(
+        template_name="serviceworker.js",
+        content_type='application/javascript',
+        )), name='serviceworker.js'),
 ]
