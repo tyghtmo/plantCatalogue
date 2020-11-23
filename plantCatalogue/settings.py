@@ -26,7 +26,7 @@ SECRET_KEY = 'a0&^&h)!im%9w)^s8lcwp^31erd*#24!7*+8@gmu3ucj(mw4th'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['plantCatalogue.eba-vshfwmi9.us-west-2.elasticbeanstalk.com', 'localhost']
+ALLOWED_HOSTS = ['plantCatalogue.eba-vshfwmi9.us-west-2.elasticbeanstalk.com', 'localhost', 'tysonwright-dev.com']
 
 # Application definition
 
