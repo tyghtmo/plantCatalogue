@@ -26,7 +26,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['tysonwright-dev.com']
+ALLOWED_HOSTS = ['tysonwright-dev.com', 'plants.tysonwright-dev.com']
 
 # Application definition
 
