@@ -3,17 +3,20 @@ A site using the trefle.io plants API.
 
 Made using Django & Python
 
-# Use:
-Ensure Python3, Django and requests is installed
+# Development Setup:
+Ensure Python3, pip and virtualenv are installed
 
 Clone repo to local machine
 
 cd into repo
 
-Add 'TREFLETOKEN' Environment variable for API key
+Add 'TREFLETOKEN' Env variable for API key
+Add 'SECRET_KEY=xxx' Env variable for Django security
+Add 'DEBUG=True' for local use or false for production
 
-Compile static/main.scss into static/dist/
-
-run `python3 ./manage.py migrate`
-
-run `python3 ./manage.py runserver`
+In PowerShell run:
+`virtualenv ENV`
+`ENV\Scripts\activate`
+`pip install -r requirements.txt`
+`python ./manage.py migrate`
+`python ./manage.py runserver`
