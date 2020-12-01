@@ -1,0 +1,26 @@
+{
+    "name": "Plant Site",
+    "short_name": "Plants",
+    "description": "A catalogue of plants",
+    "start_url": "/",
+    "display": "standalone",
+    "scope": "/",
+    "orientation": "any",
+    "background_color": "#ffffff",
+    "theme_color": "#0A0302",
+    "status_bar": "default",
+    "icons": [
+        {
+            "src": "/static/icons/plant.512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "/static/icons/plant.64x64.png",
+            "sizes": "64x64",
+            "type": "image/png"
+        }
+    ],
+    "dir": "ltr",
+    "lang": "en-US"
+}

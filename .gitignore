@@ -107,3 +107,10 @@ media/
 *.db
 *.pid
 .idea/
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+aws-HOWTO.txt
