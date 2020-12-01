@@ -21,7 +21,8 @@ from plants import views as plants_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('search/', plants_view.query, name='search'),
-    path('', plants_view.plantList),
+    path('', TemplateView.as_view(template_name="landing.html")),
+    path('plants', plants_view.plantList),
     path('genus', plants_view.genusList),
     path('family', plants_view.familyList),
     path('order', plants_view.orderList),

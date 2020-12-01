@@ -170,3 +170,13 @@ h6 {
   text-decoration: none;
   color: unset;
 }
+
+@media (min-width: 600px) {
+  .infoCol {
+    min-width: 480px;
+  }
+}
+
+p.m-0 {
+  text-align: end;
+}
