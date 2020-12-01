@@ -213,3 +213,13 @@ h6 {
     color: unset;
   }
 }
+
+.infoCol {
+  @include for-size(tablet-portrait-up) {
+    min-width: 480px;
+  }
+}
+
+p.m-0 {
+  text-align: end;
+}
