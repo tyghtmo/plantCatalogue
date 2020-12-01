@@ -15,8 +15,13 @@ Add 'SECRET_KEY=xxx' Env variable for Django security
 Add 'DEBUG=True' for local use or false for production
 
 In PowerShell run:
+
 `virtualenv ENV`
+
 `ENV\Scripts\activate`
+
 `pip install -r requirements.txt`
+
 `python ./manage.py migrate`
+
 `python ./manage.py runserver`
