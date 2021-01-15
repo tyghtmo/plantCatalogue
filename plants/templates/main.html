@@ -8,7 +8,6 @@
     <meta name="description" content="{% firstof request.path|stripSlashes|titleCaps "Plants"%}.">
     
     <!--PWA-->
-    <!-- TODO add site title -->
     <link rel="manifest" href="{% static 'manifest.json' %}">
     <link rel="apple-touch-icon" href="{% static 'icons/plant.512x512.png' %}">
     <meta name="mobile-web-app-capable" content="yes">
@@ -44,9 +43,8 @@
             }
     </script>
 
-    <!-- TODO add site title -->
     <title>
-        Site | {% block title %}Plants{% endblock %}
+        Plant Catalogue | {% block title %}Plants{% endblock %}
     </title>
 </head>
 

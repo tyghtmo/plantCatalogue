@@ -58,8 +58,6 @@ def get_single(slug, parent):
     url = 'http://trefle.io/api/v1/' + parent +'/' + slug + "?token=" + token
     response = json.loads(requests.get(url).text)
 
-    print(url)# DEBUG
-
     return response
 
 def search(query, page, parent):
@@ -68,8 +66,6 @@ def search(query, page, parent):
     response = json.loads(requests.get(url).text)
     if 'links' in response:
         response['links'] = getPageAndSearchLinks(response['links'])
-
-    print(url)# DEBUG
 
     return response
 
@@ -85,5 +81,4 @@ def get_children_from_parent(parent, child, page, slug):
         response = json.loads(requests.get(url).text)
         response['links'] = getPageLinks(response['links'])
 
-    print(url)# DEBUG
     return response
