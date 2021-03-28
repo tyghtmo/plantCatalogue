@@ -113,4 +113,6 @@ media/
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 
+# Others
 aws-HOWTO.txt
+database.cnf

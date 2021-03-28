@@ -16,11 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
-from plants import views as plants_view
+from django.contrib.auth import views as auth_views
+
+from plants.views import plantViews as plants_view
+from plants.views import accountViews
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    ########################################################
+    # Plants
     path('search/', plants_view.query, name='search'),
+    # TODO create landing page
     # path('', TemplateView.as_view(template_name="landing.html")),
     path('', plants_view.plantList),
     path('plants', plants_view.plantList),
@@ -33,8 +38,15 @@ urlpatterns = [
     path('family/<str:slug>', plants_view.family, name='family'),
     path('order/<str:slug>', plants_view.order, name='order'),
     path('class/<str:slug>', plants_view.divisionClass, name='class'),
-    path('serviceworker.js', (TemplateView.as_view(
-        template_name="serviceworker.js",
-        content_type='application/javascript',
-        )), name='serviceworker.js'),
+    ########################################################
+    # Accounts
+    path('admin/', admin.site.urls),
+    path('accounts/login/',
+         auth_views.LoginView.as_view(redirect_authenticated_user=True), name='login'),
+    path('accounts/profile/', accountViews.profile),
+    path('accounts/', include('django.contrib.auth.urls')),
+    ########################################################
+    # Other
+    path('serviceworker.js', (TemplateView.as_view(template_name="serviceworker.js",
+        content_type='application/javascript',)), name='serviceworker.js'),
 ]
