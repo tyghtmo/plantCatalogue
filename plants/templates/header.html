@@ -48,9 +48,40 @@
       </li>
 {% comment %} #TODO Add login/logout & profile buttons/links {% endcomment %}
     </ul>
-    <form class="form-inline my-2 my-lg-0 justify-content-center" action="{% url 'search'%}" method='get'>
-      <input class="form-control mr-sm-2" name='q' type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <ul class="navbar-nav m-auto">
+      <li>
+        <form class="form-inline my-2 my-lg-0 justify-content-center" action="{% url 'search'%}" method='get'>
+          <input class="form-control mr-sm-2" name='q' type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      {% if user.is_authenticated %}
+
+        {% if request.path == '/accounts/profile/'%}
+          <li class="nav-item active">
+        {% else %}
+          <li class="nav-item">
+        {% endif %}
+          <a class="nav-link" href="/accounts/profile">Profile</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/accounts/logout/">Logout</a>
+        </li>
+
+      {% else %}
+
+        {% if request.path == '/accounts/login/'%}
+          <li class="nav-item active">
+        {% else %}
+          <li class="nav-item">
+        {% endif %}
+          <a class="nav-link" href="/accounts/login/">Login</a>
+        </li>
+
+      {% endif %}
+    </ul>
   </div>
 </nav>

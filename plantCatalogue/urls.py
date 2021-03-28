@@ -18,33 +18,35 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 from django.contrib.auth import views as auth_views
 
-from plants.views import plantViews as plants_view
+from plants.views import plantViews
 from plants.views import accountViews
 
 urlpatterns = [
     ########################################################
     # Plants
-    path('search/', plants_view.query, name='search'),
+    path('search/', plantViews.query, name='search'),
     # TODO create landing page
     # path('', TemplateView.as_view(template_name="landing.html")),
-    path('', plants_view.plantList),
-    path('plants', plants_view.plantList),
-    path('genus', plants_view.genusList),
-    path('family', plants_view.familyList),
-    path('order', plants_view.orderList),
-    path('class', plants_view.classList),
-    path('plants/<str:slug>', plants_view.plant, name='plant'),
-    path('genus/<str:slug>', plants_view.genus, name='genus'),
-    path('family/<str:slug>', plants_view.family, name='family'),
-    path('order/<str:slug>', plants_view.order, name='order'),
-    path('class/<str:slug>', plants_view.divisionClass, name='class'),
+    path('', plantViews.plantList, name='home'),
+    path('plants', plantViews.plantList),
+    path('genus', plantViews.genusList),
+    path('family', plantViews.familyList),
+    path('order', plantViews.orderList),
+    path('class', plantViews.classList),
+    path('plants/<str:slug>', plantViews.plant, name='plant'),
+    path('genus/<str:slug>', plantViews.genus, name='genus'),
+    path('family/<str:slug>', plantViews.family, name='family'),
+    path('order/<str:slug>', plantViews.order, name='order'),
+    path('class/<str:slug>', plantViews.divisionClass, name='class'),
     ########################################################
     # Accounts
     path('admin/', admin.site.urls),
     path('accounts/login/',
          auth_views.LoginView.as_view(redirect_authenticated_user=True), name='login'),
-    path('accounts/profile/', accountViews.profile),
+    path("accounts/logout/", accountViews.logoutUser, name= "logout"),
+    path('accounts/profile/', accountViews.profile, name="profile"),
     path('accounts/', include('django.contrib.auth.urls')),
+    path("accounts/register/", accountViews.register, name="register"),
     ########################################################
     # Other
     path('serviceworker.js', (TemplateView.as_view(template_name="serviceworker.js",

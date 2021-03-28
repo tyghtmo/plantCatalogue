@@ -50,17 +50,18 @@ workbox.routing.registerRoute(
     }),
 );
 
-// Serve the other pages from the cache and make a request to update the value in the cache.
+// Whole page caching
 // Limit the cache to 5 entries.
-workbox.routing.registerRoute(
-    ({ url }) => !appShell.includes(url),
-    new workbox.strategies.StaleWhileRevalidate({
-        cacheName: 'dynamic-cache',
-        plugins: [new workbox.expiration.ExpirationPlugin({
-            maxEntries: 5,
-        })],
-    })
-);
+// TODO Stop pages in /accounts/ , /admin/ etc. from being cached. 
+// workbox.routing.registerRoute(
+//     ({ url }) => !appShell.includes(url) && !url.pathname.startsWith('/accounts/') && !url.pathname.startsWith('/admin/'),
+//     new workbox.strategies.StaleWhileRevalidate({
+//         cacheName: 'dynamic-cache',
+//         plugins: [new workbox.expiration.ExpirationPlugin({
+//             maxEntries: 5,
+//         })],
+//     })
+// );
 
 // Handle offline.
 // From https://developers.google.com/web/tools/workbox/guides/advanced-recipes#provide_a_fallback_response_to_a_route
